@@ -5,6 +5,8 @@ function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())];
 }
 
+const PORT = process.env.PORT || 3000;
+
 const galau = [
   "https://telegra.ph/file/c83205eeeecceb9e4db87.mp4",
   "https://telegra.ph/file/a001c30cafa587a3bef2c.mp4",
@@ -27,25 +29,13 @@ const galau = [
 
 app.get('/', (req, res) => {
   const randomVideo = pickRandom(galau);
-  res.send(`
-     <video width="320" height="240" controls>
-      <source src="${randomVideo}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <br>
-    <a href="/video/galau?url=${encodeURIComponent(randomVideo)}" target="_blank">Random Video</a>
-  `);
-});
-
-app.get('/video/galau', (req, res) => {
-  const url = req.query.url;
   res.json({
     author: "DannTeam",
-    mimetype: 'video/mp4',
+    mimetype: "video/mp4",
     url: url
   })
-})
+});
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
