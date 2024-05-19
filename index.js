@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.json({
     author: "DannTeam",
     mimetype: "video/mp4",
-    url: url
+    url: randomVideo
   })
 });
 
